@@ -1,0 +1,95 @@
+window.onload = async () => {
+    const btnConfirm = document.querySelector('.confirm');
+    const wordContainer = document.querySelector('.words'); // Đảm bảo chọn đúng phần tử
+    const params = new URLSearchParams(window.location.search);
+    const docId = params.get('docId');
+    const selectedWords = [];
+    
+    if (!docId) {
+        console.log('Không tìm thấy ID tài liệu!');
+        return;
+    }
+
+    const docData = await getDocData(docId); 
+
+    const paragraph = docData ? docData.paragraph : null; 
+
+    if (paragraph) {
+        const words = paragraph.split(/\s+/); 
+        wordContainer.innerHTML = ''; 
+        words.forEach(word => {
+            const span = document.createElement('span'); 
+            span.textContent = word; 
+            
+            span.addEventListener('click', () => {
+                span.classList.toggle('words-selected'); 
+                const index = selectedWords.indexOf(span.textContent);
+                if (index > -1) {
+                    selectedWords.splice(index, 1);
+                } else {
+                    selectedWords.push(span.textContent);
+                }
+                console.log('Selected Words:', selectedWords);
+            });
+
+            wordContainer.appendChild(span);
+        });
+    } else {
+        console.log('Không tìm thấy đoạn văn bản hoặc đoạn văn bản trống!');
+    }
+
+    // Thay đổi ở đây: sử dụng uploadSelectedWord thay vì uploadWords
+    btnConfirm.addEventListener('click', () => {
+        uploadSelectedWord(docId, selectedWords); // Sử dụng hàm uploadSelectedWord
+        window.location.href =`/preview?docId=${docId}`;
+    });
+};
+
+getDocData = async (idDoc) => {
+    try {
+        const res = await fetch('http://localhost:3000/data/get-doc', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'idDoc': idDoc
+            })
+        });
+
+        if (!res.ok) {
+            throw new Error(await res.json());
+        }
+
+        const data = await res.json();
+        return data;
+
+    } catch (err) {
+        console.log('Lỗi: ' + err);
+    }
+}
+
+uploadSelectedWord = async (idDoc, selectedWords) => {
+    try {
+        const res = await fetch('http://localhost:3000/data/upload-words', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'idDoc': idDoc,
+                'selectedWords': selectedWords
+            })
+        });
+
+        if (!res.ok) {
+            throw new Error(await res.json());
+        }
+
+        const data = await res.json();
+        console.log(data);
+
+    } catch (err) {
+        console.log('Lỗi: ' + err);
+    }
+}

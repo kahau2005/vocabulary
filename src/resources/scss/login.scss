@@ -1,0 +1,98 @@
+.login-page{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+.login-page > .bg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.login-page > .bg > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.login-page > .container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;  
+    align-items: end;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login-page > .container > .login-area{
+    height: fit-content;
+    width: fit-content;
+    background-color: rgba(0, 0, 0, 0.384);
+    backdrop-filter: blur(10px);
+    margin-right: 100px;
+    padding: 50px;
+    color: white;
+    border-radius: 30px;
+}
+.login-page > .container > .login-area > form{
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login-page > .container > .login-area > form > label{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+.login-page > .container > .login-area > form > input{
+    background-color: transparent;
+    outline: none;
+    border: 1px white solid;
+    height: 50px;
+    width: 450px;
+    border-radius: 20px;
+    color: white;
+    padding: 0 20px;
+    font-size: 20px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+.login-page > .container > .login-area > form > input[type=submit]{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 50%;
+    font-size: 15px;
+    font-weight: bold;
+    border: 0;
+    cursor: pointer;
+    background-color: #964f8ba3;
+}
+.login-page > .container > .login-area > form > p{
+    cursor: pointer;
+    width: 100%;
+    text-align: right;
+}
+.login-page > .container > .login-area > form > p:last-child{
+    cursor: auto;
+    text-align: center;
+}
+.login-page > .container > .login-area > form > p:last-child > span{
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+}
+.login-page > .container > .login-area > header {
+    display: flex;
+    align-items: center;
+}
+.login-page > .container > .login-area > header > img{
+    width: 70px;
+    border-radius: 100%;
+}
+.login-page > .container > .login-area > header > span {
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}

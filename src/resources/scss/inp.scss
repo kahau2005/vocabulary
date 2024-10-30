@@ -1,0 +1,56 @@
+.content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 150px;
+    box-sizing: border-box;
+}
+h4{
+    color: white;
+}
+#inp-title{
+    height: 45px;
+    width: 300px;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 18px;
+}
+#inp-paragraph{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 10px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-top: 10px;
+    resize: none;
+}
+.text-contain{
+    height: 65%;
+}
+.btn-contain{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.btn-contain > button{
+    width: 200px;
+    height: 100%;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    background-color: #CD457C;
+    border: none;
+    cursor: pointer;
+}
