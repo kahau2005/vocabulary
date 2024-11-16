@@ -47,10 +47,12 @@ window.onload = async () => {
 
 getDocData = async (idDoc) => {
     try {
+        const accessToken = localStorage.getItem('accessToken');
         const res = await fetch('http://localhost:3000/data/get-doc', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify({
                 'idDoc': idDoc
@@ -58,6 +60,11 @@ getDocData = async (idDoc) => {
         });
 
         if (!res.ok) {
+            if (res.status === 401 || res.status === 403) {
+                window.location.href = '/login';
+            } else {
+                console.log('Lỗi khi gọi API!');
+            }
             throw new Error(await res.json());
         }
 
@@ -70,11 +77,13 @@ getDocData = async (idDoc) => {
 }
 
 uploadSelectedWord = async (idDoc, selectedWords) => {
+    const accessToken = localStorage.getItem('accessToken');
     try {
         const res = await fetch('http://localhost:3000/data/upload-words', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify({
                 'idDoc': idDoc,
@@ -83,6 +92,11 @@ uploadSelectedWord = async (idDoc, selectedWords) => {
         });
 
         if (!res.ok) {
+            if (res.status === 401 || res.status === 403) {
+                window.location.href = '/login';
+            } else {
+                console.log('Lỗi khi gọi API!');
+            }
             throw new Error(await res.json());
         }
 

@@ -74,6 +74,7 @@ class dataController {
     processWord = async (req, res) => {
         let words = req.body.words;
         words = words.join(' ');
+
         try{
             const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY);
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-002" });
@@ -82,6 +83,7 @@ class dataController {
             const rawText = result.response.candidates[0].content.parts[0].text;
             const jsonString = rawText.replace(/```json\n|```/g, ''); // Bỏ các dấu ```json và ```
             const jsonResult = JSON.parse(jsonString); // Chuyển chuỗi thành JSON
+            
             return res.status(200).json(jsonResult);
         }catch(err){
             return res.status(500).json(err);

@@ -12,11 +12,13 @@ window.onload = () => {
 }
 
 submitParagraph = async(title, paragraph) => {
+    const accessToken = localStorage.getItem('accessToken');
     try{const params = new URLSearchParams(window.location.search);
         const res = await fetch('http://localhost:3000/data/upload-paragraph',{
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify({
                 'userID': params.get('id'),
@@ -27,6 +29,11 @@ submitParagraph = async(title, paragraph) => {
         });
 
         if (!res.ok) {
+            if (res.status === 401 || res.status === 403) {
+                window.location.href = '/login';
+            } else {
+                console.log('Lỗi khi gọi API!');
+            }
             throw new Error(await res.json());
         }
 

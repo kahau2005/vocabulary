@@ -41,11 +41,13 @@ window.onload = async () => {
 
     getWordList = async() => {
         const params = new URLSearchParams(window.location.search);
+        const accessToken = localStorage.getItem('accessToken');
         try {
             const res = await fetch('http://localhost:3000/data/get-doc', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
                 },
                 body: JSON.stringify({
                     'idDoc': params.get('docId')
@@ -55,6 +57,11 @@ window.onload = async () => {
                 const data = await res.json();
                 return data.words;
             } else {
+                if (res.status === 401 || res.status === 403) {
+                    window.location.href = '/login';
+                } else {
+                    console.log('Lỗi khi gọi API!');
+                }
                 const errorText = await res.text();
                 console.log("Lỗi: " + errorText);
             }
@@ -64,11 +71,15 @@ window.onload = async () => {
     };
     
     getWordData = async (words) => {
+        const params = new URLSearchParams(window.location.search);
+        const accessToken = localStorage.getItem('accessToken');
         try {
             const res = await fetch('http://localhost:3000/data/word-data', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+
                 },
                 body: JSON.stringify({
                     'words': words
@@ -78,7 +89,13 @@ window.onload = async () => {
                 const data = await res.json();
                 return data;
             } else {
+                if (res.status === 401 || res.status === 403) {
+                    window.location.href = '/login';
+                } else {
+                    console.log('Lỗi khi gọi API!');
+                }
                 const errorText = await res.text();
+                alert('Gemini không phản hồi! Hãy tải lại trang!');
                 console.log("Lỗi: " + errorText);
             }
         } catch (err) {

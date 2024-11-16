@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const route = require('./routes');
 const {create} = require('express-handlebars');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const app = express();
@@ -13,6 +14,9 @@ const hbs = create({
 });
 const port = 3000;
 
+app.use(cors({
+    origin: '*', // Allow only this origin or use '*' to allow all
+  }));
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.json());

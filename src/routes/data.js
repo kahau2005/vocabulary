@@ -3,10 +3,10 @@ const router = express.Router();
 const middlewareController = require('../app/controllers/MiddlewareController');
 const dataController = require('../app/controllers/dataController');
 
-router.post('/user', dataController.getUserData);
-router.post('/upload-paragraph', dataController.uploadParagrap);
-router.post('/word-data', dataController.processWord);
-router.post('/get-doc', dataController.getDocData);
-router.post('/upload-words', dataController.uploadWords);
+router.post('/user',middlewareController.verifyToken, dataController.getUserData);
+router.post('/upload-paragraph',middlewareController.verifyToken, dataController.uploadParagrap);
+router.post('/word-data',middlewareController.verifyToken, dataController.processWord);
+router.post('/get-doc',middlewareController.verifyToken, dataController.getDocData);
+router.post('/upload-words',middlewareController.verifyToken, dataController.uploadWords);
 
 module.exports = router;
