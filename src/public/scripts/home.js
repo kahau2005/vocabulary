@@ -1,6 +1,9 @@
 window.onload = async () => {
     const itemsContainer = document.querySelector('.my-docs');
     const btnAdd = document.querySelector('.add');
+    
+    
+    console.log(localStorage.getItem('user-data'));
     const myDocs = await getMydoc();
     loadDocuments(itemsContainer, myDocs.units);
     
@@ -11,7 +14,9 @@ window.onload = async () => {
 }
 
 
+
 getMydoc = async () => {
+    const nameDisplay = document.getElementById('header-name');
     const params = new URLSearchParams(window.location.search);
     const accessToken = localStorage.getItem('accessToken');
     try {
@@ -41,6 +46,7 @@ getMydoc = async () => {
         }
 
         const data = await res.json();
+        nameDisplay.innerText = "Chào, " + data.name;
         return data;
     } catch (err) {
         console.log('Lỗi: ' + err);

@@ -1,6 +1,7 @@
 window.onload = () => {
     const submitBtn = document.querySelector('.login-page > .container > .login-area > form > input[type=submit]');
     
+    
     submitBtn.addEventListener('click', async (ev) => {
         ev.preventDefault(); // Ngừng hành động mặc định của nút submit
         
