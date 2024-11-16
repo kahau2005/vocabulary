@@ -78,7 +78,7 @@ class dataController {
         try{
             const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY);
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-002" });
-            const prompt = `Hãy trả về từ nguyên mẫu, từ loại(n, v, adj, adv...), phiên âm, giải nghĩa bằng tiếng anh, nghĩa tiếng Việt, ví dụ đơn giản của các từ: ${words} dưới dạng JSON với các title tương ứng (word, pos, ipa, en_meaning, vn_meaning, example)`;
+            const prompt = `Hãy trả về từ nguyên mẫu, từ loại(n, v, adj, adv...), phiên âm, giải nghĩa bằng tiếng anh, dịch từ ra tiếng Việt, ví dụ đơn giản của các từ: ${words} dưới dạng JSON với các title tương ứng (word, pos, ipa, en_meaning, vn_meaning, example)`;
             const result = await model.generateContent(prompt);
             const rawText = result.response.candidates[0].content.parts[0].text;
             const jsonString = rawText.replace(/```json\n|```/g, ''); // Bỏ các dấu ```json và ```
