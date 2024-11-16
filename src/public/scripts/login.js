@@ -48,6 +48,7 @@ const login = async (username, password) => {
         const data = await res.json();
 
         // Lưu accessToken vào localStorage
+        localStorage.setItem('user-data', data);
         localStorage.setItem('accessToken', data.accessToken);
 
         // Chuyển hướng tới trang home
