@@ -15,7 +15,7 @@ getMydoc = async () => {
     const params = new URLSearchParams(window.location.search);
     const accessToken = localStorage.getItem('accessToken');
     try {
-        const res = await fetch('https://vocabulary-dy7w.onrender.com/data/user', {
+        const res = await fetch('https://vocabulary-jund.onrender.com/data/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ redirectToPreview = (id) => {
 getDocData = async (idDoc) => {
     const accessToken = localStorage.getItem('accessToken');
     try{
-        const res = await fetch('https://vocabulary-dy7w.onrender.com/data/get-doc',{
+        const res = await fetch('https://vocabulary-jund.onrender.com/data/get-doc',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

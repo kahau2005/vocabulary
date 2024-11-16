@@ -48,7 +48,7 @@ window.onload = async () => {
 getDocData = async (idDoc) => {
     try {
         const accessToken = localStorage.getItem('accessToken');
-        const res = await fetch('https://vocabulary-dy7w.onrender.com/data/get-doc', {
+        const res = await fetch('https://vocabulary-jund.onrender.com/data/get-doc', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ getDocData = async (idDoc) => {
 uploadSelectedWord = async (idDoc, selectedWords) => {
     const accessToken = localStorage.getItem('accessToken');
     try {
-        const res = await fetch('https://vocabulary-dy7w.onrender.com/data/upload-words', {
+        const res = await fetch('https://vocabulary-jund.onrender.com/data/upload-words', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
