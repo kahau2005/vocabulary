@@ -14,7 +14,7 @@ window.onload = () => {
 submitParagraph = async(title, paragraph) => {
     const accessToken = localStorage.getItem('accessToken');
     try{const params = new URLSearchParams(window.location.search);
-        const res = await fetch('http://localhost:3000/data/upload-paragraph',{
+        const res = await fetch('https://vocabulary-dy7w.onrender.com/data/upload-paragraph',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

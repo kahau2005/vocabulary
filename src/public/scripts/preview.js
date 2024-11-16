@@ -43,7 +43,7 @@ window.onload = async () => {
         const params = new URLSearchParams(window.location.search);
         const accessToken = localStorage.getItem('accessToken');
         try {
-            const res = await fetch('http://localhost:3000/data/get-doc', {
+            const res = await fetch('https://vocabulary-dy7w.onrender.com/data/get-doc', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ window.onload = async () => {
         const params = new URLSearchParams(window.location.search);
         const accessToken = localStorage.getItem('accessToken');
         try {
-            const res = await fetch('http://localhost:3000/data/word-data', {
+            const res = await fetch('https://vocabulary-dy7w.onrender.com/data/word-data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
